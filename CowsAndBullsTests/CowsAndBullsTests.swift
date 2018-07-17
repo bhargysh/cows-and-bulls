@@ -21,16 +21,24 @@ class CowsAndBullsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testNoCowsOrBulls() {
+      XCTAssertEqual(check(parsedInput: [9, 3, 4, 5], secretNum: [8, 2, 0, 7]), Response.init(bulls: 0, cows: 0))
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+  
+  func testAllBullsMatch() {
+    XCTAssertEqual(check(parsedInput: [1, 2, 3, 4], secretNum: [1, 2, 3, 4]), Response.init(bulls: 4, cows: 0))
+  }
+  
+  func testSomeBullsMatch() {
+    XCTAssertEqual(check(parsedInput: [1, 2, 3, 4], secretNum: [1, 0, 3, 0]), Response.init(bulls: 2, cows: 0))
+  }
+  
+  func testAllCowsMatch() {
+    XCTAssertEqual(check(parsedInput: [4, 3, 2, 1], secretNum: [1, 2, 3, 4]), Response.init(bulls: 0, cows: 4))
+  }
+  
+  func testSomeCowsMatch() {
+    XCTAssertEqual(check(parsedInput: [0, 1, 4, 5], secretNum: [1, 2, 3, 4]), Response.init(bulls: 0, cows: 2))
+  }
     
 }
