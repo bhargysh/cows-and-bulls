@@ -40,5 +40,33 @@ class CowsAndBullsTests: XCTestCase {
   func testSomeCowsMatch() {
     XCTAssertEqual(check(parsedInput: [0, 1, 4, 5], secretNum: [1, 2, 3, 4]), Response.init(bulls: 0, cows: 2))
   }
-    
+  
+  func testInputIntConversion() {
+    XCTAssertEqual(checkConvertToInt("4"), 4)
+  }
+  
+  func testInputIntConversionFail() {
+    XCTAssertEqual(checkConvertToInt("!"), nil)
+  }
+  
+  func testFourDigitValidParsing() {
+    XCTAssertEqual(parsing("3467"), [3, 4, 6, 7])
+  }
+  
+  func testInvalidParsing() {
+    XCTAssertEqual(parsing("!@&*"), nil)
+  }
+  
+  func testTwoDigitInvalidParsing() {
+    XCTAssertEqual(parsing("34"), nil)
+  }
+  
+  func testFourDigitInvalidParsing() {
+    XCTAssertEqual(parsing("1234!"), nil)
+  }
+  
+  func testFiveDigitInvalidParsing() {
+    XCTAssertEqual(parsing("12345"), nil)
+  }
+  
 }

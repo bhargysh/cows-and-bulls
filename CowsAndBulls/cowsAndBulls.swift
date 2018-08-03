@@ -23,7 +23,19 @@ func secretNumber() -> [Int] {
 }
 
 func parsing(_ userInput: String) -> [Int]? {
+  let intArray = userInput.makeIterator().map(checkConvertToInt)
+  let validIntArray = intArray.compactMap { (digit: Int?) -> Int? in return digit
+  }
+  //NOTE: Simplify this pls
+  if (validIntArray.count == 4 && validIntArray.count == intArray.count) {
+    return validIntArray
+  }
   return nil
+}
+
+func checkConvertToInt(_ input: Character) -> Int? {
+  let intDict: [Character: Int] = ["0": 0, "1": 1,"2": 2,"3": 3,"4": 4,"5": 5,"6": 6, "7": 7,"8": 8,"9": 9]
+  return intDict[input]
 }
 
 public func check(parsedInput: [Int], secretNum: [Int]) -> Response {
