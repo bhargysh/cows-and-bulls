@@ -69,4 +69,18 @@ class CowsAndBullsTests: XCTestCase {
     XCTAssertEqual(parsing("12345"), nil)
   }
   
+  func testSecretNumberSize() {
+    for _ in 1...100 {
+      XCTAssertEqual(secretNumber().count, 4)
+    }
+  }
+  
+  func testSecretNumberType() {
+    for _ in 1...100 {
+      XCTAssertFalse(secretNumber().contains(where: ({ (digit) -> Bool in
+        return !(0...9).contains(digit)
+      })))
+    }
+  }
+  
 }

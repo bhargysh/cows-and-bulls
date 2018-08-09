@@ -18,17 +18,18 @@ public func response(_ response: Response) -> String {
 }
 
 func secretNumber() -> [Int] {
-  let secretNum = [1, 2, 3, 4]
+  //let secretNum = [1, 2, 3, 4]
+  var secretNum: [Int] = []
+  for _ in 1...4 {
+    secretNum.append(Int(arc4random_uniform(10)))
+  }
   return secretNum
 }
 
 func parsing(_ userInput: String) -> [Int]? {
-  let intArray = userInput.makeIterator().map(checkConvertToInt)
-  let validIntArray = intArray.compactMap { (digit: Int?) -> Int? in return digit
-  }
-  //NOTE: Simplify this pls
-  if (validIntArray.count == 4 && validIntArray.count == intArray.count) {
-    return validIntArray
+  let validOutputArray = userInput.makeIterator().compactMap(checkConvertToInt)
+  if (validOutputArray.count == 4 && validOutputArray.count == userInput.count) {
+    return validOutputArray
   }
   return nil
 }
