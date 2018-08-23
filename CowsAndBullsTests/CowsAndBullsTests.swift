@@ -49,8 +49,8 @@ class CowsAndBullsTests: XCTestCase {
     XCTAssertEqual(checkConvertToInt("!"), nil)
   }
   
-  func testFourDigitValidParsing() {
-    XCTAssertEqual(parsing("3467"), [3, 4, 6, 7])
+  func testCorrectNumberOfValidDigitsParsing() {
+    XCTAssertEqual(parsing("34678"), [3, 4, 6, 7, 8])
   }
   
   func testInvalidParsing() {
@@ -65,13 +65,13 @@ class CowsAndBullsTests: XCTestCase {
     XCTAssertEqual(parsing("1234!"), nil)
   }
   
-  func testFiveDigitInvalidParsing() {
-    XCTAssertEqual(parsing("12345"), nil)
+  func testTooManyDigitsParsing() {
+    XCTAssertEqual(parsing("1234567890"), nil)
   }
   
   func testSecretNumberSize() {
     for _ in 1...100 {
-      XCTAssertEqual(secretNumber().count, 4)
+      XCTAssertEqual(secretNumber().count, 5)
     }
   }
   

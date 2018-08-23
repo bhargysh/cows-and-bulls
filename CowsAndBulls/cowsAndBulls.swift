@@ -8,7 +8,7 @@
 
 import Foundation
 
-let secretLength: Int = 4
+let secretLength: Int = 5
 
 public struct Response: Equatable {
   public let bulls: Int
