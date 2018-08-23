@@ -12,7 +12,8 @@ class ViewController: UIViewController {
 
   @IBOutlet weak var inputField: UITextField!
   @IBOutlet weak var result: UILabel!
-  var secret:[Int] = []
+  //var secret:[Int] = []
+  var game: Game?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,13 +21,14 @@ class ViewController: UIViewController {
     
     inputField.addTarget(self, action: #selector(ViewController.someMethod), for: UIControlEvents.editingChanged)
     
-    secret = secretNumber()
+    game = Game.init(secretLength: 5)
+    
   }
   
   @objc func someMethod() {
     if let input = inputField.text {
       if let guess = parsing(input) {
-        let r = check(parsedInput: guess, secretNum: secret)
+        let r = check(parsedInput: guess, secretNum: game!.secretNumber)
         let userWin = didUserWin(r)
         if userWin {
           result.text = "YOU WON!"

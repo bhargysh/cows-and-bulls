@@ -15,6 +15,16 @@ public struct Response: Equatable {
   public let cows: Int
 }
 
+public struct Game {
+  public let secretNumber: [Int]
+  public let secretLength: Int
+  
+  init(secretLength: Int) {
+    self.secretLength = secretLength
+    self.secretNumber = generateSecretNumber(secretLength)
+  }
+}
+
 public func response(_ response: Response) -> String {
   return "\(response.bulls) bulls, \(response.cows) cows"
 }
@@ -23,7 +33,7 @@ public func didUserWin(_ response: Response) -> Bool {
   return response.bulls == secretLength
 }
 
-func secretNumber() -> [Int] {
+func generateSecretNumber(_ secretLength: Int) -> [Int] {
   //let secretNum = [1, 2, 3, 4]
   var secretNum: [Int] = []
   for _ in 1...secretLength {
