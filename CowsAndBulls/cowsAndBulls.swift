@@ -8,6 +8,8 @@
 
 import Foundation
 
+let secretLength: Int = 4
+
 public struct Response: Equatable {
   public let bulls: Int
   public let cows: Int
@@ -18,13 +20,13 @@ public func response(_ response: Response) -> String {
 }
 
 public func didUserWin(_ response: Response) -> Bool {
-  return response.bulls == 4
+  return response.bulls == secretLength
 }
 
 func secretNumber() -> [Int] {
   //let secretNum = [1, 2, 3, 4]
   var secretNum: [Int] = []
-  for _ in 1...4 {
+  for _ in 1...secretLength {
     secretNum.append(Int(arc4random_uniform(10)))
   }
   return secretNum
@@ -32,7 +34,7 @@ func secretNumber() -> [Int] {
 
 func parsing(_ userInput: String) -> [Int]? {
   let validOutputArray = userInput.makeIterator().compactMap(checkConvertToInt)
-  if (validOutputArray.count == 4 && validOutputArray.count == userInput.count) {
+  if (validOutputArray.count == secretLength && validOutputArray.count == userInput.count) {
     return validOutputArray
   }
   return nil
