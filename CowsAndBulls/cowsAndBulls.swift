@@ -17,6 +17,10 @@ public func response(_ response: Response) -> String {
   return "\(response.bulls) bulls, \(response.cows) cows"
 }
 
+public func didUserWin(_ response: Response) -> Bool {
+  return response.bulls == 4
+}
+
 func secretNumber() -> [Int] {
   //let secretNum = [1, 2, 3, 4]
   var secretNum: [Int] = []

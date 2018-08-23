@@ -27,7 +27,13 @@ class ViewController: UIViewController {
     if let input = inputField.text {
       if let guess = parsing(input) {
         let r = check(parsedInput: guess, secretNum: secret)
-        result.text = response(r)
+        let userWin = didUserWin(r)
+        if userWin {
+          result.text = "YOU WON!"
+        }
+        else {
+          result.text = response(r)
+        }
       }
     }
 //    result.text = ""
