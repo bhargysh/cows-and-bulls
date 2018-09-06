@@ -8,7 +8,7 @@
 
 import Foundation
 
-let secretLength: Int = 5
+//let secretLength: Int = 5
 
 public struct Response: Equatable {
   public let bulls: Int
@@ -23,15 +23,26 @@ public struct Game {
     self.secretLength = secretLength
     self.secretNumber = generateSecretNumber(secretLength)
   }
+  
+  public func didUserWin(_ response: Response) -> Bool {
+    return response.bulls == secretLength
+  }
+  
+  func parsing(_ userInput: String) -> [Int]? {
+    let validOutputArray = userInput.makeIterator().compactMap(checkConvertToInt)
+    if (validOutputArray.count == secretLength && validOutputArray.count == userInput.count) {
+      return validOutputArray
+    }
+    return nil
+  }
+
 }
 
 public func response(_ response: Response) -> String {
   return "\(response.bulls) bulls, \(response.cows) cows"
 }
 
-public func didUserWin(_ response: Response) -> Bool {
-  return response.bulls == secretLength
-}
+
 
 func generateSecretNumber(_ secretLength: Int) -> [Int] {
   //let secretNum = [1, 2, 3, 4]
@@ -40,14 +51,6 @@ func generateSecretNumber(_ secretLength: Int) -> [Int] {
     secretNum.append(Int(arc4random_uniform(10)))
   }
   return secretNum
-}
-
-func parsing(_ userInput: String) -> [Int]? {
-  let validOutputArray = userInput.makeIterator().compactMap(checkConvertToInt)
-  if (validOutputArray.count == secretLength && validOutputArray.count == userInput.count) {
-    return validOutputArray
-  }
-  return nil
 }
 
 func checkConvertToInt(_ input: Character) -> Int? {

@@ -50,34 +50,36 @@ class CowsAndBullsTests: XCTestCase {
   }
   
   func testCorrectNumberOfValidDigitsParsing() {
-    XCTAssertEqual(parsing("34678"), [3, 4, 6, 7, 8])
+    XCTAssertEqual(Game(secretLength: 5).parsing("34678"), [3, 4, 6, 7, 8])
   }
   
   func testInvalidParsing() {
-    XCTAssertEqual(parsing("!@&*"), nil)
+    XCTAssertEqual(Game(secretLength: 56).parsing("!@&*"), nil)
   }
   
   func testTwoDigitInvalidParsing() {
-    XCTAssertEqual(parsing("34"), nil)
+    XCTAssertEqual(Game(secretLength: 3).parsing("34"), nil)
   }
   
   func testFourDigitInvalidParsing() {
-    XCTAssertEqual(parsing("1234!"), nil)
+    XCTAssertEqual(Game(secretLength: 4).parsing("1234!"), nil)
   }
   
   func testTooManyDigitsParsing() {
-    XCTAssertEqual(parsing("1234567890"), nil)
+    XCTAssertEqual(Game(secretLength: 9).parsing("1234567890"), nil)
   }
   
   func testSecretNumberSize() {
-    for _ in 1...100 {
-      XCTAssertEqual(secretNumber().count, 5)
+    for secretLength in 1...10 {
+      for _ in 1...100 {
+        XCTAssertEqual(Game(secretLength: secretLength).secretNumber.count, secretLength)
+      }
     }
   }
   
   func testSecretNumberType() {
     for _ in 1...100 {
-      XCTAssertFalse(secretNumber().contains(where: ({ (digit) -> Bool in
+      XCTAssertFalse(Game(secretLength: 7).secretNumber.contains(where: ({ (digit) -> Bool in
         return !(0...9).contains(digit)
       })))
     }

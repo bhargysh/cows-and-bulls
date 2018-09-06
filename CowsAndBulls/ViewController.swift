@@ -26,19 +26,16 @@ class ViewController: UIViewController {
   }
   
   @objc func someMethod() {
-    if let input = inputField.text {
-      if let guess = parsing(input) {
-        let r = check(parsedInput: guess, secretNum: game!.secretNumber)
-        let userWin = didUserWin(r)
-        if userWin {
-          result.text = "YOU WON!"
-        }
-        else {
-          result.text = response(r)
-        }
+    if let input = inputField.text, let game = self.game, let guess = game.parsing(input) {
+      let r = check(parsedInput: guess, secretNum: game.secretNumber)
+      let userWin = game.didUserWin(r)
+      if userWin {
+        result.text = "YOU WON!"
+      }
+      else {
+        result.text = response(r)
       }
     }
-//    result.text = ""
   }
 
   override func didReceiveMemoryWarning() {
