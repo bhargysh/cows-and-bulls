@@ -85,4 +85,8 @@ class CowsAndBullsTests: XCTestCase {
     }
   }
   
+  func testResponseDescription() {
+    XCTAssertEqual(Response(bulls: 4, cows: 1).description, "4 bulls, 1 cows")
+  }
+  
 }

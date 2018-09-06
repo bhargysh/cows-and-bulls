@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         result.text = "YOU WON!"
       }
       else {
-        result.text = response(r)
+        result.text = r.description
       }
     }
   }
